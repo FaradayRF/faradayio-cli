@@ -1,8 +1,20 @@
+import re
+from setuptools import setup
 from distutils.core import setup
+
+version = re.search(
+    '^__version__\s*=\s*"(.*)"',
+    open('faradayio_cli/faradayio_cli.py').read(),
+    re.M
+    ).group(1)
+
 setup(
     name='faradayio-cli',
-    packages=['faradayio-cli'],
-    version='0.0.0',
+    packages=['faradayio_cli'],
+    entry_points={
+        "console_scripts": ['faradayio-cli = faradayio_cli.faradayio_cli:main']
+        },
+    version=version,
     description='FaradayRF TUN/TAP adapter command line interface',
     author='FaradayRF',
     author_email='Support@FaradayRF.com',
