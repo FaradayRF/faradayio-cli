@@ -9,6 +9,11 @@ from faradayio.faraday import Faraday
 
 def setupArgParse():
     parser = argparse.ArgumentParser()
+
+    # Required arguments
+    parser.add_argument("callsign", help="Callsign of Faraday radio")
+
+    # Parse and return arguments
     return parser.parse_args()
 
 def main():
