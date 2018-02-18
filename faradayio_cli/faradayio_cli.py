@@ -5,6 +5,7 @@ __version__ = "0.0.0"
 import sys
 import argparse
 import serial
+import threading
 
 from faradayio.faraday import Monitor
 from faradayio.faraday import SerialTestClass
@@ -52,4 +53,5 @@ def main():
 
     # Setup TUN adapter
     tunName = "{0}-{1}".format(args.callsign.upper(),args.id)
-    tun = Monitor(serialPort=serialPort)
+    tun = Monitor(serialPort=serialPort, name=tunName)
+    tun.start()
