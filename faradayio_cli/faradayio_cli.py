@@ -40,4 +40,8 @@ def main():
     args = setupArgparse()
 
     # Setup serial port
-    serialPort = setupSerialPort(args.loopback, args.port)
+    try:
+        serialPort = setupSerialPort(args.loopback, args.port)
+
+    except serial.SerialException as error:
+        raise SystemExit(error)
