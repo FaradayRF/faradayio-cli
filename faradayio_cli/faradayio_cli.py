@@ -37,7 +37,11 @@ def main():
     print("Executing faradayio-cli version {0}".format(__version__))
 
     # Setup command line arguments
-    args = setupArgparse()
+    try:
+        args = setupArgparse()
+
+    except argparse.ArgumentError as error:
+        raise SystemExit(error)
 
     # Setup serial port
     try:
