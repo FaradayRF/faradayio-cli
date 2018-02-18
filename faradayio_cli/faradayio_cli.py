@@ -13,8 +13,8 @@ def setupArgparse():
     parser = argparse.ArgumentParser()
 
     # Required arguments
-    parser.add_argument("Callsign", help="Callsign of radio")
-    parser.add_argument("ID", type=int, help="ID number radio")
+    parser.add_argument("callsign", help="Callsign of radio")
+    parser.add_argument("id", type=int, help="ID number radio")
 
     # Optional arguments
     parser.add_argument("-l", "--loopback", action="store_true", help="Use software loopback serial port")
@@ -45,3 +45,7 @@ def main():
 
     except serial.SerialException as error:
         raise SystemExit(error)
+
+    # Setup TUN adapter
+    tunName = "{0}-{1}".format(args.callsign.upper(),args.id)
+    # tun = faraday.Monitor(serialPort=serialPort)
