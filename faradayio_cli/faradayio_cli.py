@@ -6,7 +6,7 @@ import sys
 import argparse
 import serial
 
-from faradayio.faraday import Faraday
+from faradayio.faraday import Monitor
 from faradayio.faraday import SerialTestClass
 
 def setupArgparse():
@@ -52,4 +52,4 @@ def main():
 
     # Setup TUN adapter
     tunName = "{0}-{1}".format(args.callsign.upper(),args.id)
-    # tun = faraday.Monitor(serialPort=serialPort)
+    tun = Monitor(serialPort=serialPort)
