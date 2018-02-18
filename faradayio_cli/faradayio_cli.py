@@ -14,6 +14,9 @@ def setupArgParse():
     parser.add_argument("callsign", help="Callsign of Faraday radio")
     parser.add_argument("ID", type=int, help="ID number Faraday radio")
 
+    # Optional arguments
+    parser.add_argument("-l", "--loopback", action="store_true", help="Use software loopback serial port")
+
     # Parse and return arguments
     return parser.parse_args()
 
