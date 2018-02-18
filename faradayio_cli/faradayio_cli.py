@@ -7,7 +7,7 @@ import argparse
 
 from faradayio.faraday import Faraday
 
-def setupArgParse():
+def setupArgparse():
     parser = argparse.ArgumentParser()
 
     # Required arguments
@@ -24,4 +24,4 @@ def main():
     print("Executing faradayio-cli version {0}".format(__version__))
 
     # Setup command line arguments
-    args = setupArgParse()
+    args = setupArgparse()
