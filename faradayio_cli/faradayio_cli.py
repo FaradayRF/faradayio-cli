@@ -52,22 +52,23 @@ def main():
     except serial.SerialException as error:
         raise SystemExit(error)
 
-    # Setup TUN adapter
+    # Create TUN adapter name
     tunName = "{0}-{1}".format(args.callsign.upper(),args.id)
 
+    # Create threading event for TUN thread control
+    # set() causes while loop to continuously run until clear() is run
     isRunning = threading.Event()
     isRunning.set()
 
+    # Setup TUN adapter and start
     tun = Monitor(serialPort=serialPort, name=tunName, isRunning=isRunning)
     tun.start()
 
+    # loop infinitely until KeyboardInterrupt, then clear() event to exit thread
     try:
         while True:
             time.sleep(0.1)
-            print("sleeping...")
 
     except KeyboardInterrupt:
-        print("stopping threads...")
-        isRunning.clear()
+        tun.isRunning.clear()
         tun.join()
-        print("stopped!")
