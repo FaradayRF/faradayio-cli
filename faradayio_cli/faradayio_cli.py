@@ -28,7 +28,8 @@ def setupArgparse():
 def setupSerialPort(loopback, port):
     if loopback:
         # Implement loopback software serial port
-        serialPort = SerialTestClass()
+        testSerial = SerialTestClass()
+        serialPort = testSerial.serialPort
     else:
         # TODO enable serial port command line options (keep simple for user!)
         serialPort = serial.Serial(port, 115200, timeout=0)
