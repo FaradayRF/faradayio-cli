@@ -31,7 +31,7 @@ def setupSerialPort(loopback, port):
         serialPort = SerialTestClass()
     else:
         # TODO enable serial port command line options (keep simple for user!)
-        serialPort = serial.Serial(port, 115200, timeout=1)
+        serialPort = serial.Serial(port, 115200, timeout=0)
 
     return serialPort
 
