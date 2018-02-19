@@ -6,6 +6,7 @@ import sys
 import argparse
 import serial
 import threading
+import time
 
 from faradayio.faraday import Monitor
 from faradayio.faraday import SerialTestClass
@@ -53,5 +54,20 @@ def main():
 
     # Setup TUN adapter
     tunName = "{0}-{1}".format(args.callsign.upper(),args.id)
-    tun = Monitor(serialPort=serialPort, name=tunName)
+
+    isRunning = threading.Event()
+    isRunning.set()
+
+    tun = Monitor(serialPort=serialPort, name=tunName, isRunning=isRunning)
     tun.start()
+
+    try:
+        while True:
+            time.sleep(0.1)
+            print("sleeping...")
+
+    except KeyboardInterrupt:
+        print("stopping threads...")
+        isRunning.clear()
+        tun.join()
+        print("stopped!")
