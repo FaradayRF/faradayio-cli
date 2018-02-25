@@ -100,6 +100,7 @@ def main():
     # loop infinitely until KeyboardInterrupt, then clear() event, exit thread
     try:
         while True:
+            # Check for KeyboardInterrupt every 100ms
             time.sleep(0.1)
 
     except KeyboardInterrupt:
