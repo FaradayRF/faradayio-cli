@@ -12,6 +12,15 @@ from faradayio.faraday import SerialTestClass
 
 
 def setupArgparse():
+    """Sets up argparse module to create command line options and parse them
+
+    Uses the argparse module to add arguments to the command line for
+    faradayio-cli. Once the arguments are added and parsed the arguments are
+    returned
+
+    Returns:
+        argparse.Namespace: Populated namespace of arguments
+    """
     parser = argparse.ArgumentParser()
 
     # Required arguments
