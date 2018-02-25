@@ -6,6 +6,7 @@ import argparse
 import serial
 import threading
 import time
+import pytun
 
 from faradayio.faraday import Monitor
 from faradayio.faraday import SerialTestClass
@@ -94,8 +95,12 @@ def main():
     isRunning.set()
 
     # Setup TUN adapter and start
-    tun = Monitor(serialPort=serialPort, name=tunName, isRunning=isRunning)
-    tun.start()
+    try:
+        tun = Monitor(serialPort=serialPort, name=tunName, isRunning=isRunning)
+        tun.start()
+
+    except pytun.Error as error:
+        raise SystemExit(error)
 
     # loop infinitely until KeyboardInterrupt, then clear() event, exit thread
     try:
