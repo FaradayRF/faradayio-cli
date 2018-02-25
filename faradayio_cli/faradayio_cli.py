@@ -2,7 +2,6 @@
 
 __version__ = "0.0.0"
 
-import sys
 import argparse
 import serial
 import threading
@@ -10,6 +9,7 @@ import time
 
 from faradayio.faraday import Monitor
 from faradayio.faraday import SerialTestClass
+
 
 def setupArgparse():
     parser = argparse.ArgumentParser()
@@ -19,11 +19,14 @@ def setupArgparse():
     parser.add_argument("id", type=int, help="ID number radio")
 
     # Optional arguments
-    parser.add_argument("-l", "--loopback", action="store_true", help="Use software loopback serial port")
-    parser.add_argument("-p", "--port", default="/dev/ttyUSB0", help="Physical serial port of radio")
+    parser.add_argument("-l", "--loopback", action="store_true",
+                        help="Use software loopback serial port")
+    parser.add_argument("-p", "--port", default="/dev/ttyUSB0",
+                        help="Physical serial port of radio")
 
     # Parse and return arguments
     return parser.parse_args()
+
 
 def setupSerialPort(loopback, port):
     if loopback:
@@ -35,6 +38,7 @@ def setupSerialPort(loopback, port):
         serialPort = serial.Serial(port, 115200, timeout=0)
 
     return serialPort
+
 
 def main():
     print("Executing faradayio-cli version {0}".format(__version__))
@@ -54,7 +58,7 @@ def main():
         raise SystemExit(error)
 
     # Create TUN adapter name
-    tunName = "{0}-{1}".format(args.callsign.upper(),args.id)
+    tunName = "{0}-{1}".format(args.callsign.upper(), args.id)
 
     # Create threading event for TUN thread control
     # set() causes while loop to continuously run until clear() is run
@@ -65,7 +69,7 @@ def main():
     tun = Monitor(serialPort=serialPort, name=tunName, isRunning=isRunning)
     tun.start()
 
-    # loop infinitely until KeyboardInterrupt, then clear() event to exit thread
+    # loop infinitely until KeyboardInterrupt, then clear() event, exit thread
     try:
         while True:
             time.sleep(0.1)
