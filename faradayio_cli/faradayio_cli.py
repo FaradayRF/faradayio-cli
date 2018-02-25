@@ -45,7 +45,7 @@ def setupSerialPort(loopback, port):
     the command line option. If loopback is True then it overrides physical port
     specification.
 
-    Arguments:
+    Args:
         loopback: argparse option
         port: argparse option
 
