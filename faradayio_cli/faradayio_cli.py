@@ -64,6 +64,11 @@ def setupSerialPort(loopback, port):
 
 
 def main():
+    """Main function of faradayio-cli client.
+
+    Informs user of version being run and then sets up the program followed
+    by starting up the TUN/TAP device threads.
+    """
     print("Executing faradayio-cli version {0}".format(__version__))
 
     # Setup command line arguments
