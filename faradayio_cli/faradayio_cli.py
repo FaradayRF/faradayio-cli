@@ -38,6 +38,20 @@ def setupArgparse():
 
 
 def setupSerialPort(loopback, port):
+    """Sets up serial port by connecting to phsyical or software port
+
+    Depending on command line options, this function will either connect to a
+    SerialTestClass() port for loopback testing or to the specified port from
+    the command line option. If loopback is True then it overrides physical port
+    specification.
+
+    Arguments:
+        loopback: argparse option
+        port: argparse option
+
+    Returns:
+        serialPort: Pyserial serial port instance
+    """
     if loopback:
         # Implement loopback software serial port
         testSerial = SerialTestClass()
