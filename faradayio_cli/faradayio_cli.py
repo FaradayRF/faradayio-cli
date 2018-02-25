@@ -12,7 +12,7 @@ from faradayio.faraday import SerialTestClass
 
 
 def setupArgparse():
-    """Sets up argparse module to create command line options and parse them
+    """Sets up argparse module to create command line options and parse them.
 
     Uses the argparse module to add arguments to the command line for
     faradayio-cli. Once the arguments are added and parsed the arguments are
@@ -38,7 +38,7 @@ def setupArgparse():
 
 
 def setupSerialPort(loopback, port):
-    """Sets up serial port by connecting to phsyical or software port
+    """Sets up serial port by connecting to phsyical or software port.
 
     Depending on command line options, this function will either connect to a
     SerialTestClass() port for loopback testing or to the specified port from
