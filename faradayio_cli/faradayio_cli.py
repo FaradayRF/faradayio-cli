@@ -43,7 +43,7 @@ def setupSerialPort(loopback, port):
 
     Depending on command line options, this function will either connect to a
     SerialTestClass() port for loopback testing or to the specified port from
-    the command line option. If loopback is True then it overrides physical port
+    the command line option. If loopback is True it overrides the physical port
     specification.
 
     Args:
