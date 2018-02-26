@@ -1,5 +1,5 @@
 attrs==17.4.0
-faradayio==0.0.2
+faradayio>=0.0.1
 flake8==3.5.0
 future==0.16.0
 mccabe==0.6.1
