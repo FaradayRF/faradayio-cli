@@ -3,7 +3,7 @@ dist: trusty
 language: python
 python:
 - '3.5'
-install:
-- "~/virtualenv/python3.5/bin/pip3 install -r requirements.txt"
+# install:
+# - "~/virtualenv/python3.5/bin/pip3 install -r requirements.txt"
 script:
 - "~/virtualenv/python3.5/bin/flake8 --exclude docs/ ."
