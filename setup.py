@@ -1,6 +1,5 @@
 import re
 from setuptools import setup
-from distutils.core import setup
 
 version = re.search(
     '^__version__\s*=\s*"(.*)"',
