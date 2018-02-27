@@ -23,6 +23,7 @@ $ pip3 install -e .
 ## Usage
 To run `faradayio-cli` one must be a `sudo` user due to the Linux requirements for TUN/TAP software. Additionally, if you are using a virtual environment you must also explicitly call the virtual environment installation of `faradayio-cli`
 
+You are required to provide a callsign and ID number as shown in the examples below. The `/dev/ttyUSB0` serial port is used by default and should be specified with the `--port` or `-p` option. See the Command Line Options section below for more information.
 ### System Wide installation
 ```
 $ sudo faradayio-cli KB1LQC 1
@@ -38,6 +39,22 @@ To exit, simply push `cntl+c` to perform a `KeyboardInterrupt` which will proper
 ```
 Executing faradayio-cli version 0.0.1
 ^CTUN brought down...
+```
+### Command Line Options
+Several command line options are required while others are optional. Below is an example from `faradayio-cli` version `0.0.1` which is provided when the program is run with `-h` or `--help`.
+```
+$ sudo .venv/bin/faradayio-cli --help
+Executing faradayio-cli version 0.0.1
+usage: faradayio-cli [-h] [-l] [-p PORT] callsign id
+
+positional arguments:
+  callsign              Callsign of radio
+  id                    ID number radio
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -l, --loopback        Use software loopback serial port
+  -p PORT, --port PORT  Physical serial port of radio
 ```
 ## FaradayRF
 This project is provided by [FaradayRF](https://www.faradayrf.com) as [GPLv3](https://github.com/FaradayRF/faradayio/blob/master/LICENSE) software aimed at the amateur radio (ham radio) community. Please join us on our [Gitter lobby](https://gitter.im/FaradayRF/Lobby) if you have any questions. Send an email to [Support@faradayrf.com](Support@faradayrf.com) if you would like to contact us via email.
