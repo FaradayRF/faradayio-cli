@@ -12,7 +12,11 @@ To install `faradayio-cli` simply install with `pip3`
 pip3 install faradayio-cli
 ```
 ### Git Repository Editable Mode
-
+```
+$ git clone git@github.com:FaradayRF/faradayio-cli.git
+$ cd faradayio-cli
+$ pip3 install -e .
+```
 ## Usage
 
 ## FaradayRF
