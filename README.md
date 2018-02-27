@@ -23,7 +23,11 @@ $ pip3 install -e .
 ## Usage
 To run `faradayio-cli` one must be a `sudo` user due to the Linux requirements for TUN/TAP software. Additionally, if you are using a virtual environment you must also explicitly call the virtual environment installation of `faradayio-cli`
 
-You are required to provide a callsign and ID number as shown in the examples below. The `/dev/ttyUSB0` serial port is used by default and should be specified with the `--port` or `-p` option. See the Command Line Options section below for more information.
+Basic usage includes:
+
+```faradayio-cli [-h] [-l] [-p PORT] callsign id```
+
+You are required to provide a `callsign` and `id` number as shown in the examples below. The `/dev/ttyUSB0` serial port is used by default and should be specified with the `--port` or `-p` option. See the Command Line Options section below for more information.
 ### System Wide installation
 ```
 $ sudo faradayio-cli KB1LQC 1
