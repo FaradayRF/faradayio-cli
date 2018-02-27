@@ -8,6 +8,14 @@ The main use of `faradayio-cli` is to provide access to the FaradayRF Faraday ra
 ![](docs/images/ubuntuConnectionInfo.png)
 ## Installation
 Install from PyPi for general use. If you would like to develop with the project them please follow these instructions to setup a virtual environment with a fork of the project and install the project in editable mode.
+
+### Recommended Environment
+`faradayio-cli` was developed and tested with the following environments
+
+* Ubuntu 16.04
+* Python3
+* `faradayio` version `0.0.2` or greater
+
 ### PyPi
 To install `faradayio-cli` simply install with `pip3`
 ```
