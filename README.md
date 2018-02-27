@@ -16,6 +16,15 @@ $ cd faradayio-cli
 $ pip3 install -e .
 ```
 ## Usage
+To run `faradayio-cli` one must be a `sudo` user due to the Linux requirements for TUN/TAP software. Additionally, if you are using a virtual environment you must also explicitly call the virtual environment installation of `faradayio-cli`
+
+### Virtual Environment
+```
+$ (.venv) bryce@bryce-ubuntu:~/Documents/git/faradayio-cli$ sudo .venv/bin/faradayio-cli KB1LQC 1
+$ Executing faradayio-cli version 0.0.1
+```
+### Exiting `faradayio-cli`
+To exit, simply push `cntl+c` to perform a `KeyboardInterrupt` which will properly exit the TUN/TAP adapter.
 
 ## FaradayRF
 This project is provided by [FaradayRF](https://www.faradayrf.com) as [GPLv3](https://github.com/FaradayRF/faradayio/blob/master/LICENSE) software aimed at the amateur radio (ham radio) community. Please join us on our [Gitter lobby](https://gitter.im/FaradayRF/Lobby) if you have any questions. Send an email to [Support@faradayrf.com](Support@faradayrf.com) if you would like to contact us via email.
