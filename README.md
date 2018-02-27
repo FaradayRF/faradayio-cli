@@ -18,10 +18,15 @@ $ pip3 install -e .
 ## Usage
 To run `faradayio-cli` one must be a `sudo` user due to the Linux requirements for TUN/TAP software. Additionally, if you are using a virtual environment you must also explicitly call the virtual environment installation of `faradayio-cli`
 
+### System Wide installation
+```
+$ sudo faradayio-cli KB1LQC 1
+Executing faradayio-cli version 0.0.1
+```
 ### Virtual Environment
 ```
 $ (.venv) bryce@bryce-ubuntu:~/Documents/git/faradayio-cli$ sudo .venv/bin/faradayio-cli KB1LQC 1
-$ Executing faradayio-cli version 0.0.1
+Executing faradayio-cli version 0.0.1
 ```
 ### Exiting `faradayio-cli`
 To exit, simply push `cntl+c` to perform a `KeyboardInterrupt` which will properly exit the TUN/TAP adapter.
