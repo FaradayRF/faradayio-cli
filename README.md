@@ -17,6 +17,7 @@ pip3 install faradayio-cli
 ```
 $ git clone git@github.com:FaradayRF/faradayio-cli.git
 $ cd faradayio-cli
+$ pip3 install -r requirements.txt
 $ pip3 install -e .
 ```
 ## Usage
