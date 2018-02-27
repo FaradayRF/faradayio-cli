@@ -30,6 +30,9 @@ Executing faradayio-cli version 0.0.1
 ```
 ### Exiting `faradayio-cli`
 To exit, simply push `cntl+c` to perform a `KeyboardInterrupt` which will properly exit the TUN/TAP adapter.
-
+```
+Executing faradayio-cli version 0.0.1
+^CTUN brought down...
+```
 ## FaradayRF
 This project is provided by [FaradayRF](https://www.faradayrf.com) as [GPLv3](https://github.com/FaradayRF/faradayio/blob/master/LICENSE) software aimed at the amateur radio (ham radio) community. Please join us on our [Gitter lobby](https://gitter.im/FaradayRF/Lobby) if you have any questions. Send an email to [Support@faradayrf.com](Support@faradayrf.com) if you would like to contact us via email.
