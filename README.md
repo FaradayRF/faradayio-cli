@@ -7,7 +7,10 @@ The `faradayio-cli` package provides a command line implementation of the [`fara
 Install from PyPi for general use. If you would like to develop with the project them please follow these instructions to setup a virtual environment with a fork of the project and install the project in editable mode.
 
 ### PyPi
-
+To install `faradayio-cli` simply install with `pip3`
+```
+pip3 install faradayio-cli
+```
 ### Git Repository Editable Mode
 
 ## Usage
