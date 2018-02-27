@@ -25,7 +25,7 @@ To run `faradayio-cli` one must be a `sudo` user due to the Linux requirements f
 
 Basic usage includes:
 
-```faradayio-cli [-h] [-l] [-p PORT] callsign id```
+`faradayio-cli [-h] [-l] [-p PORT] callsign id`
 
 You are required to provide a `callsign` and `id` number as shown in the examples below. The `/dev/ttyUSB0` serial port is used by default and should be specified with the `--port` or `-p` option. See the Command Line Options section below for more information.
 ### System Wide installation
