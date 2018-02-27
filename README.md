@@ -23,7 +23,7 @@ $ pip3 install -e .
 ## Usage
 To run `faradayio-cli` one must be a `sudo` user due to the Linux requirements for TUN/TAP software. Additionally, if you are using a virtual environment you must also explicitly call the virtual environment installation of `faradayio-cli`
 
-Basic usage includes:
+### Basic Usage
 
 `faradayio-cli [-h] [-l] [-p PORT] callsign id`
 
