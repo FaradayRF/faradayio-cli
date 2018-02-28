@@ -100,6 +100,7 @@ def main():
         tun.start()
 
     except pytun.Error as error:
+        print("Warning! faradayio-cli must be run with sudo privileges!")
         raise SystemExit(error)
 
     # loop infinitely until KeyboardInterrupt, then clear() event, exit thread
