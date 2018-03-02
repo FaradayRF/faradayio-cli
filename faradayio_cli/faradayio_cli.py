@@ -1,6 +1,6 @@
 """faradayio-cli.faradayio-cli: provides entry point main()."""
 
-__version__ = "0.0.1a"
+__version__ = "0.0.2"
 
 import argparse
 import serial
