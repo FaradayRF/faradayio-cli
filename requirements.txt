@@ -1,6 +1,5 @@
 attrs==17.4.0
 faradayio==0.0.2
--e git+git@github.com:kb1lqc/faradayio-cli.git@e789876c0ae8fb4b7974d436a2a74a0e1b892232#egg=faradayio_cli
 flake8==3.5.0
 mccabe==0.6.1
 pluggy==0.6.0
