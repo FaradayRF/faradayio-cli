@@ -12,7 +12,7 @@ setup(
     packages=['faradayio_cli'],
     install_requires=[
         'attrs==17.4.0',
-        'faradayio==0.0.2',
+        'faradayio==0.0.3',
         'flake8==3.5.0',
         'mccabe==0.6.1',
         'pluggy==0.6.0',
