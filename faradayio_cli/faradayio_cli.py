@@ -29,14 +29,14 @@ def setupArgparse():
     parser.add_argument("id", type=int, help="ID number radio")
 
     # Optional arguments
+    parser.add_argument("-i", "--addr", default="10.0.0.1",
+                    help="Set IP Address of TUN adapter (Farday Radio)")
     parser.add_argument("-l", "--loopback", action="store_true",
                         help="Use software loopback serial port")
-    parser.add_argument("-p", "--port", default="/dev/ttyUSB0",
-                        help="Physical serial port of radio")
     parser.add_argument("-m", "--mtu", default="1500",
                         help="Set Maximum Transmission Unit (MTU)")
-    parser.add_argument("-i", "--addr", default="10.0.0.1",
-                        help="Set IP Address of TUN adapter (Farday Radio)")
+    parser.add_argument("-p", "--port", default="/dev/ttyUSB0",
+                        help="Physical serial port of radio")
 
     # Parse and return arguments
     return parser.parse_args()
