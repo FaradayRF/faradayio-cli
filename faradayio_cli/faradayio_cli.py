@@ -100,7 +100,11 @@ def main():
 
     # Setup TUN adapter and start
     try:
-        tun = Monitor(serialPort=serialPort, name=tunName, isRunning=isRunning, addr=args.addr, mtu=int(args.mtu))
+        tun = Monitor(serialPort=serialPort,
+                      name=tunName,
+                      isRunning=isRunning,
+                      addr=args.addr,
+                      mtu=int(args.mtu))
         tun.start()
 
     except pytun.Error as error:
