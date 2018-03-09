@@ -33,7 +33,7 @@ def setupArgparse():
                         help="Set IP Address of TUN adapter (Farday Radio)")
     parser.add_argument("-l", "--loopback", action="store_true",
                         help="Use software loopback serial port")
-    parser.add_argument("-m", "--mtu", default="1500",
+    parser.add_argument("-m", "--mtu", default=1500,
                         help="Set Maximum Transmission Unit (MTU)")
     parser.add_argument("-p", "--port", default="/dev/ttyUSB0",
                         help="Physical serial port of radio")
@@ -100,7 +100,7 @@ def main():
 
     # Setup TUN adapter and start
     try:
-        tun = Monitor(serialPort=serialPort, name=tunName, isRunning=isRunning)
+        tun = Monitor(serialPort=serialPort, name=tunName, isRunning=isRunning, addr=args.addr, mtu=int(args.mtu))
         tun.start()
 
     except pytun.Error as error:
