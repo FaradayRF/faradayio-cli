@@ -30,7 +30,7 @@ def setupArgparse():
 
     # Optional arguments
     parser.add_argument("-i", "--addr", default="10.0.0.1",
-                    help="Set IP Address of TUN adapter (Farday Radio)")
+                        help="Set IP Address of TUN adapter (Farday Radio)")
     parser.add_argument("-l", "--loopback", action="store_true",
                         help="Use software loopback serial port")
     parser.add_argument("-m", "--mtu", default="1500",
