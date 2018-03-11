@@ -103,6 +103,11 @@ def checkUserInput(args):
     if not 68 <= args.mtu <= 65535:
         raise ValueError("mtu must be between 68 and 65535 bytes")
 
+    # Check serial port path value
+    # Expect a string
+    if not isinstance(args.port, str):
+        raise TypeError("serial port path must be a string")
+
 
 def setupSerialPort(loopback, port, baud, readtimeout, writetimeout):
     """Sets up serial port by connecting to phsyical or software port.
