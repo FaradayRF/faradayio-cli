@@ -48,6 +48,7 @@ def setupArgparse():
     # Parse and return arguments
     return parser.parse_args()
 
+
 def checkUserInput(args):
     """Checks user input for validity
 
@@ -129,8 +130,6 @@ def checkUserInput(args):
     if isinstance(args.writetimeout, int):
         if not 0 <= args.writetimeout:
             raise ValueError("write timeout must be a positive value")
-
-
 
 
 def setupSerialPort(loopback, port, baud, readtimeout, writetimeout):
