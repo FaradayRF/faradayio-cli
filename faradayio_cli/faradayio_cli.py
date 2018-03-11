@@ -72,7 +72,10 @@ def setupSerialPort(loopback, port, baud, readtimeout, writetimeout):
         serialPort = testSerial.serialPort
     else:
         # TODO enable serial port command line options (keep simple for user!)
-        serialPort = serial.Serial(port=port, baudrate=baud, timeout=readtimeout, write_timeout=writetimeout)
+        serialPort = serial.Serial(port=port,
+                                   baudrate=baud,
+                                   timeout=readtimeout,
+                                   write_timeout=writetimeout)
 
     return serialPort
 
