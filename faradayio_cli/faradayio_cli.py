@@ -36,7 +36,7 @@ def setupArgparse():
                         help="Set serial port baud rate")
     parser.add_argument("-l", "--loopback", action="store_true",
                         help="Use software loopback serial port")
-    parser.add_argument("-m", "--mtu", default=1500,
+    parser.add_argument("-m", "--mtu", default=1500, type=int,
                         help="Set Maximum Transmission Unit (MTU)")
     parser.add_argument("-p", "--port", default="/dev/ttyUSB0",
                         help="Physical serial port of radio")
@@ -94,6 +94,14 @@ def checkUserInput(args):
     # Expect a boolean
     if not isinstance(args.loopback, bool):
         raise TypeError
+
+    # Check Maximum Transmission Unit (MTU)
+    # Expect and integer
+    if not isinstance(args.mtu, int):
+        raise TypeError
+    # Expect a value between 68-65535 per RFC 791
+    if not 68 <= args.mtu <= 65535:
+        raise ValueError("--mtu must be between 68 and 65535 bytes")
 
 
 def setupSerialPort(loopback, port, baud, readtimeout, writetimeout):
