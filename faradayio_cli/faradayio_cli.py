@@ -39,9 +39,9 @@ def setupArgparse():
                         help="Set Maximum Transmission Unit (MTU)")
     parser.add_argument("-p", "--port", default="/dev/ttyUSB0",
                         help="Physical serial port of radio")
-    parser.add_argument("--timeout", default=0,
+    parser.add_argument("--timeout", default=0, type=int,
                         help="Set serial port read timeout")
-    parser.add_argument("--writetimeout", default=None,
+    parser.add_argument("--writetimeout", default=None, type=int,
                         help="Set serial port read timeout")
 
     # Parse and return arguments
