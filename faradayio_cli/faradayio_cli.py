@@ -116,7 +116,7 @@ def checkUserInput(args):
             raise TypeError("read timeout must be an integer or Nonetype")
     # Expect a value greater than zero
     if isinstance(args.timeout, int):
-        if not 0 <= args.mtu
+        if not 0 <= args.timeout:
             raise ValueError("read timeout must be a positive value")
 
     # Check write timeout
@@ -127,7 +127,7 @@ def checkUserInput(args):
             raise TypeError("write timeout must be an integer or Nonetype")
     # Expect a value greater than zero
     if isinstance(args.writetimeout, int):
-        if not 0 <= args.mtu
+        if not 0 <= args.writetimeout:
             raise ValueError("write timeout must be a positive value")
 
 
