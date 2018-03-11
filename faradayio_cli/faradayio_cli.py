@@ -42,7 +42,7 @@ def setupArgparse():
     return parser.parse_args()
 
 
-def setupSerialPort(loopback, port):
+def setupSerialPort(loopback, port, baud, readtimeout, writetimeout):
     """Sets up serial port by connecting to phsyical or software port.
 
     Depending on command line options, this function will either connect to a
@@ -53,6 +53,9 @@ def setupSerialPort(loopback, port):
     Args:
         loopback: argparse option
         port: argparse option
+        baud: serial port baudrate
+        readtimeout: serial port read timeout
+        writetimeout: serial port write timeout
 
     Returns:
         serialPort: Pyserial serial port instance
@@ -63,7 +66,7 @@ def setupSerialPort(loopback, port):
         serialPort = testSerial.serialPort
     else:
         # TODO enable serial port command line options (keep simple for user!)
-        serialPort = serial.Serial(port, 115200, timeout=0)
+        serialPort = serial.Serial(port=port, baudrate=baud, timeout=readtimeout, write_timeout=writetimeout)
 
     return serialPort
 
