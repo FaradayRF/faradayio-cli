@@ -108,6 +108,19 @@ def checkUserInput(args):
     if not isinstance(args.port, str):
         raise TypeError("serial port path must be a string")
 
+    # Check timeout
+    # Expect and integer
+    if not isinstance(args.timeout, int):
+        if not isinstance(args.timeout, type(None)):
+            # TODO: Likely cannot be NoneType yet per argparse design
+            raise TypeError("id must be an integer or Nonetype")
+    # Expect a value between 68-65535 per RFC 791
+    if isinstance(args.timeout, int):
+        if not 0 <= args.mtu
+            raise ValueError("read timeout must be a positive value")
+
+
+
 
 def setupSerialPort(loopback, port, baud, readtimeout, writetimeout):
     """Sets up serial port by connecting to phsyical or software port.
