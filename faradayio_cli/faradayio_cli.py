@@ -90,6 +90,12 @@ def checkUserInput(args):
     if args.baud not in baudrate:
         raise ValueError
 
+    # Check loopback True/False
+    # Expect a boolean
+    if not isinstance(args.loopback, bool):
+        raise TypeError
+
+
 def setupSerialPort(loopback, port, baud, readtimeout, writetimeout):
     """Sets up serial port by connecting to phsyical or software port.
 
