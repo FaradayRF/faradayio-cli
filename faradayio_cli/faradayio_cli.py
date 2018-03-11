@@ -32,7 +32,7 @@ def setupArgparse():
     # Optional arguments
     parser.add_argument("--addr", default="10.0.0.1",
                         help="Set IP Address of TUN adapter (Faraday Radio)")
-    parser.add_argument("-b", "--baud", default="115200",
+    parser.add_argument("-b", "--baud", default=115200, type=int,
                         help="Set serial port baud rate")
     parser.add_argument("-l", "--loopback", action="store_true",
                         help="Use software loopback serial port")
@@ -78,6 +78,17 @@ def checkUserInput(args):
     # Expect an IP address that is valid
     ipaddress.IPv4Address(args.addr)
 
+    # Check Baud Rate
+    # Expect and integer
+    if not isinstance(args.baud, int):
+        raise TypeError
+    # Expect and integer that is a standard serial value
+    # Should be able to use argparse choices too
+    baudrate = [50, 75, 110, 134, 150, 200, 600, 1200, 1800, 2400, 4800, 9600,
+                19200, 38400, 57600, 115200, 230400, 460800, 500000, 57600,
+                921600]
+    if args.baud not in baudrate:
+        raise ValueError
 
 def setupSerialPort(loopback, port, baud, readtimeout, writetimeout):
     """Sets up serial port by connecting to phsyical or software port.
