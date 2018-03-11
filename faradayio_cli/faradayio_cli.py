@@ -29,14 +29,20 @@ def setupArgparse():
     parser.add_argument("id", type=int, help="ID number radio")
 
     # Optional arguments
-    parser.add_argument("-i", "--addr", default="10.0.0.1",
-                        help="Set IP Address of TUN adapter (Farday Radio)")
+    parser.add_argument("--addr", default="10.0.0.1",
+                        help="Set IP Address of TUN adapter (Faraday Radio)")
+    parser.add_argument("-b", "--baud", default="115200",
+                        help="Set serial port baud rate")
     parser.add_argument("-l", "--loopback", action="store_true",
                         help="Use software loopback serial port")
     parser.add_argument("-m", "--mtu", default=1500,
                         help="Set Maximum Transmission Unit (MTU)")
     parser.add_argument("-p", "--port", default="/dev/ttyUSB0",
                         help="Physical serial port of radio")
+    parser.add_argument("--timeout", default=0,
+                        help="Set serial port read timeout")
+    parser.add_argument("--writetimeout", default=None,
+                        help="Set serial port read timeout")
 
     # Parse and return arguments
     return parser.parse_args()
@@ -88,7 +94,11 @@ def main():
 
     # Setup serial port
     try:
-        serialPort = setupSerialPort(args.loopback, args.port)
+        serialPort = setupSerialPort(loopback=args.loopback,
+                                     port=args.port,
+                                     baud=args.baud,
+                                     readtimeout=args.timeout,
+                                     writetimeout=args.writetimeout)
 
     except serial.SerialException as error:
         raise SystemExit(error)
