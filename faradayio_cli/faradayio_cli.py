@@ -7,6 +7,7 @@ import serial
 import threading
 import time
 import pytun
+import ipaddress
 
 from faradayio.faraday import Monitor
 from faradayio.faraday import SerialTestClass
@@ -46,6 +47,36 @@ def setupArgparse():
 
     # Parse and return arguments
     return parser.parse_args()
+
+def checkUserInput(args):
+    """Checks user input for validity
+
+    Args:
+        args: argparse arguments
+
+    """
+    # Check callsign
+    # Expect a string
+    if not isinstance(args.callsign, str):
+        raise TypeError
+    # Callsigns are at most seven characters long
+    if len(args.callsign) > 7:
+        raise ValueError
+
+    # Check ID
+    # Expect and integer
+    if not isinstance(args.id, int):
+        raise TypeError
+    # Expect a value between 0-255
+    if args.id < 0 or args.id > 255:
+        raise ValueError
+
+    # Check IP Address
+    # Expect a string
+    if not isinstance(args.addr, str):
+        raise TypeError
+    # Expect an IP address that is valid
+    ipaddress.IPv4Address(args.addr)
 
 
 def setupSerialPort(loopback, port, baud, readtimeout, writetimeout):
@@ -94,6 +125,8 @@ def main():
 
     except argparse.ArgumentError as error:
         raise SystemExit(error)
+
+    checkUserInput(args)
 
     # Setup serial port
     try:
