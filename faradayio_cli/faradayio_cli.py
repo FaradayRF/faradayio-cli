@@ -58,50 +58,50 @@ def checkUserInput(args):
     # Check callsign
     # Expect a string
     if not isinstance(args.callsign, str):
-        raise TypeError
+        raise TypeError("callsign must be a string")
     # Callsigns are at most seven characters long
-    if len(args.callsign) > 7:
-        raise ValueError
+    if not 3 <= len(args.callsign) <= 7:
+        raise ValueError("callsign must be between 3 and 7 characters long")
 
     # Check ID
     # Expect and integer
     if not isinstance(args.id, int):
-        raise TypeError
+        raise TypeError("id must be an integer")
     # Expect a value between 0-255
-    if args.id < 0 or args.id > 255:
-        raise ValueError
+    if not 0 <= args.id <= 255:
+        raise ValueError("id must be between 0 and 255")
 
     # Check IP Address
     # Expect a string
     if not isinstance(args.addr, str):
-        raise TypeError
+        raise TypeError("IP address must be a string")
     # Expect an IP address that is valid
     ipaddress.IPv4Address(args.addr)
 
     # Check Baud Rate
     # Expect and integer
     if not isinstance(args.baud, int):
-        raise TypeError
+        raise TypeError("baud rate must be an integer")
     # Expect and integer that is a standard serial value
     # Should be able to use argparse choices too
     baudrate = [50, 75, 110, 134, 150, 200, 600, 1200, 1800, 2400, 4800, 9600,
                 19200, 38400, 57600, 115200, 230400, 460800, 500000, 57600,
                 921600]
     if args.baud not in baudrate:
-        raise ValueError
+        raise ValueError("baud rate must be a standard value per --help")
 
     # Check loopback True/False
     # Expect a boolean
     if not isinstance(args.loopback, bool):
-        raise TypeError
+        raise TypeError("loopback must be a boolean")
 
     # Check Maximum Transmission Unit (MTU)
     # Expect and integer
     if not isinstance(args.mtu, int):
-        raise TypeError
+        raise TypeError("mtu must be an integer")
     # Expect a value between 68-65535 per RFC 791
     if not 68 <= args.mtu <= 65535:
-        raise ValueError("--mtu must be between 68 and 65535 bytes")
+        raise ValueError("mtu must be between 68 and 65535 bytes")
 
 
 def setupSerialPort(loopback, port, baud, readtimeout, writetimeout):
