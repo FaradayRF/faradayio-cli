@@ -29,20 +29,26 @@ def setupArgparse():
     parser.add_argument("id", type=int, help="ID number radio")
 
     # Optional arguments
-    parser.add_argument("-i", "--addr", default="10.0.0.1",
-                        help="Set IP Address of TUN adapter (Farday Radio)")
+    parser.add_argument("--addr", default="10.0.0.1",
+                        help="Set IP Address of TUN adapter (Faraday Radio)")
+    parser.add_argument("-b", "--baud", default="115200",
+                        help="Set serial port baud rate")
     parser.add_argument("-l", "--loopback", action="store_true",
                         help="Use software loopback serial port")
     parser.add_argument("-m", "--mtu", default=1500,
                         help="Set Maximum Transmission Unit (MTU)")
     parser.add_argument("-p", "--port", default="/dev/ttyUSB0",
                         help="Physical serial port of radio")
+    parser.add_argument("--timeout", default=0, type=int,
+                        help="Set serial port read timeout")
+    parser.add_argument("--writetimeout", default=None, type=int,
+                        help="Set serial port read timeout")
 
     # Parse and return arguments
     return parser.parse_args()
 
 
-def setupSerialPort(loopback, port):
+def setupSerialPort(loopback, port, baud, readtimeout, writetimeout):
     """Sets up serial port by connecting to phsyical or software port.
 
     Depending on command line options, this function will either connect to a
@@ -53,6 +59,9 @@ def setupSerialPort(loopback, port):
     Args:
         loopback: argparse option
         port: argparse option
+        baud: serial port baudrate
+        readtimeout: serial port read timeout
+        writetimeout: serial port write timeout
 
     Returns:
         serialPort: Pyserial serial port instance
@@ -63,7 +72,10 @@ def setupSerialPort(loopback, port):
         serialPort = testSerial.serialPort
     else:
         # TODO enable serial port command line options (keep simple for user!)
-        serialPort = serial.Serial(port, 115200, timeout=0)
+        serialPort = serial.Serial(port=port,
+                                   baudrate=baud,
+                                   timeout=readtimeout,
+                                   write_timeout=writetimeout)
 
     return serialPort
 
@@ -85,7 +97,11 @@ def main():
 
     # Setup serial port
     try:
-        serialPort = setupSerialPort(args.loopback, args.port)
+        serialPort = setupSerialPort(loopback=args.loopback,
+                                     port=args.port,
+                                     baud=args.baud,
+                                     readtimeout=args.timeout,
+                                     writetimeout=args.writetimeout)
 
     except serial.SerialException as error:
         raise SystemExit(error)
