@@ -7,6 +7,7 @@ import serial
 import threading
 import time
 import pytun
+import ipaddress
 
 from faradayio.faraday import Monitor
 from faradayio.faraday import SerialTestClass
@@ -31,11 +32,11 @@ def setupArgparse():
     # Optional arguments
     parser.add_argument("--addr", default="10.0.0.1",
                         help="Set IP Address of TUN adapter (Faraday Radio)")
-    parser.add_argument("-b", "--baud", default="115200",
+    parser.add_argument("-b", "--baud", default=115200, type=int,
                         help="Set serial port baud rate")
     parser.add_argument("-l", "--loopback", action="store_true",
                         help="Use software loopback serial port")
-    parser.add_argument("-m", "--mtu", default=1500,
+    parser.add_argument("-m", "--mtu", default=1500, type=int,
                         help="Set Maximum Transmission Unit (MTU)")
     parser.add_argument("-p", "--port", default="/dev/ttyUSB0",
                         help="Physical serial port of radio")
@@ -46,6 +47,89 @@ def setupArgparse():
 
     # Parse and return arguments
     return parser.parse_args()
+
+
+def checkUserInput(args):
+    """Checks user input for validity
+
+    Args:
+        args: argparse arguments
+
+    """
+    # Check callsign
+    # Expect a string
+    if not isinstance(args.callsign, str):
+        raise TypeError("callsign must be a string")
+    # Callsigns are at most seven characters long
+    if not 3 <= len(args.callsign) <= 7:
+        raise ValueError("callsign must be between 3 and 7 characters long")
+
+    # Check ID
+    # Expect and integer
+    if not isinstance(args.id, int):
+        raise TypeError("id must be an integer")
+    # Expect a value between 0-255
+    if not 0 <= args.id <= 255:
+        raise ValueError("id must be between 0 and 255")
+
+    # Check IP Address
+    # Expect a string
+    if not isinstance(args.addr, str):
+        raise TypeError("IP address must be a string")
+    # Expect an IP address that is valid
+    ipaddress.IPv4Address(args.addr)
+
+    # Check Baud Rate
+    # Expect and integer
+    if not isinstance(args.baud, int):
+        raise TypeError("baud rate must be an integer")
+    # Expect and integer that is a standard serial value
+    # Should be able to use argparse choices too
+    baudrate = [50, 75, 110, 134, 150, 200, 600, 1200, 1800, 2400, 4800, 9600,
+                19200, 38400, 57600, 115200, 230400, 460800, 500000, 57600,
+                921600]
+    if args.baud not in baudrate:
+        raise ValueError("baud rate must be a standard value per --help")
+
+    # Check loopback True/False
+    # Expect a boolean
+    if not isinstance(args.loopback, bool):
+        raise TypeError("loopback must be a boolean")
+
+    # Check Maximum Transmission Unit (MTU)
+    # Expect and integer
+    if not isinstance(args.mtu, int):
+        raise TypeError("mtu must be an integer")
+    # Expect a value between 68-65535 per RFC 791
+    if not 68 <= args.mtu <= 65535:
+        raise ValueError("mtu must be between 68 and 65535 bytes")
+
+    # Check serial port path value
+    # Expect a string
+    if not isinstance(args.port, str):
+        raise TypeError("serial port path must be a string")
+
+    # Check timeout
+    # Expect and integer
+    if not isinstance(args.timeout, int):
+        if not isinstance(args.timeout, type(None)):
+            # TODO: Likely cannot be NoneType yet per argparse design
+            raise TypeError("read timeout must be an integer or Nonetype")
+    # Expect a value greater than zero
+    if isinstance(args.timeout, int):
+        if not 0 <= args.timeout:
+            raise ValueError("read timeout must be a positive value")
+
+    # Check write timeout
+    # Expect and integer
+    if not isinstance(args.writetimeout, int):
+        if not isinstance(args.writetimeout, type(None)):
+            # TODO: Likely cannot be NoneType yet per argparse design
+            raise TypeError("write timeout must be an integer or Nonetype")
+    # Expect a value greater than zero
+    if isinstance(args.writetimeout, int):
+        if not 0 <= args.writetimeout:
+            raise ValueError("write timeout must be a positive value")
 
 
 def setupSerialPort(loopback, port, baud, readtimeout, writetimeout):
@@ -94,6 +178,8 @@ def main():
 
     except argparse.ArgumentError as error:
         raise SystemExit(error)
+
+    checkUserInput(args)
 
     # Setup serial port
     try:
