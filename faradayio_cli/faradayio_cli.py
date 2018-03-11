@@ -113,11 +113,22 @@ def checkUserInput(args):
     if not isinstance(args.timeout, int):
         if not isinstance(args.timeout, type(None)):
             # TODO: Likely cannot be NoneType yet per argparse design
-            raise TypeError("id must be an integer or Nonetype")
-    # Expect a value between 68-65535 per RFC 791
+            raise TypeError("read timeout must be an integer or Nonetype")
+    # Expect a value greater than zero
     if isinstance(args.timeout, int):
         if not 0 <= args.mtu
             raise ValueError("read timeout must be a positive value")
+
+    # Check write timeout
+    # Expect and integer
+    if not isinstance(args.writetimeout, int):
+        if not isinstance(args.writetimeout, type(None)):
+            # TODO: Likely cannot be NoneType yet per argparse design
+            raise TypeError("write timeout must be an integer or Nonetype")
+    # Expect a value greater than zero
+    if isinstance(args.writetimeout, int):
+        if not 0 <= args.mtu
+            raise ValueError("write timeout must be a positive value")
 
 
 
