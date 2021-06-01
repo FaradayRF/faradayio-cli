@@ -36,7 +36,7 @@ setup(
         'sliplib==0.3.0',
         'sphinx-rtd-theme==0.2.4',
         'timeout-decorator==0.4.0',
-        'urllib3==1.22',
+        'urllib3==1.26.5',
     ],
     entry_points={
         "console_scripts": ['faradayio-cli = faradayio_cli.faradayio_cli:main']
